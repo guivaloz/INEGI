@@ -1,19 +1,31 @@
+
 # INEGI
 
-Apuntes y scripts para trabajar con datos abiertos de INEGI. Programando con Python e importando a la base de datos PostgreSQL.
+Apuntes y scripts para trabajar con datos abiertos de INEGI. Programando con [Python](https://www.python.org/), importando a la base de datos [PostgreSQL](https://www.postgresql.org/) y usando **GNU/Linux** como sistema operativo.
+
+### Requerimientos
+
+* GNU/Linux instalado con el entorno gráfico de su preferencia.
+* PostgreSQL.
+* PostGIS.
+* Python versión 3 más las librerías:
+    * [psycopg2](https://pypi.python.org/pypi/psycopg2) es un adaptador para PostgreSQL.
+* QGIS.
 
 ### Para iniciar la base de datos
 
-Si no lo ha hecho, cree el usuario inegi en PostgreSQL sin privilegio de crear nuevas bases de datos y sin ser superusuario.
+Si no lo ha hecho, cree el usuario **inegi** en PostgreSQL sin privilegio de crear nuevas bases de datos y sin ser superusuario.
 
     $ createuser -D -S inegi
 
-Cree la base de datos inegi otorgándole la propiedad al usuario inegi:
+Cree la base de datos **inegi** otorgándole la propiedad al usuario **inegi**:
 
     $ createdb -O inegi inegi
 
-Lea el archivo README.md de cada directorio para más instrucciones.
+### Luego alimente el Sistema de Referencia de Coordenadas
 
-Si desea empezar de nuevo, elimine la base de datos con:
+INEGI usa el **ITRF92 INEGI**. Vaya al directorio **SistemaReferenciaCoordenadas** y siga los pasos de su propio README.md
 
-    $ dropdb inegi
+### Cada directorio abarca un contenido de INEGI
+
+Recomiendo comenzar con el **Marco Geostadístico Nacional** para bajar, alimentar y visualizar la información geográfica de estados, municipios, localidades y AGEBs.
