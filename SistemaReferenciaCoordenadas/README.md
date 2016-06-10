@@ -20,6 +20,7 @@ Recién creada la base de datos en PostgreSQL, debería agregar el **SRC**; pued
     $ psql -c "CREATE EXTENSION postgis_topology;" inegi
     $ psql -f src-itrf92-inegi.sql inegi
 
+
 ### Agregar el SRC a QGIS
 
 ![QGIS SRC ITRF92 INEGI](imagenes/qgis-src-itrf92-inegi.png)
