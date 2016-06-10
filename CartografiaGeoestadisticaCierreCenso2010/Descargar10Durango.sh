@@ -1,14 +1,23 @@
 #!/bin/bash
 
 #
-# Descargar Cartografía Geoestadística cierre Censo 2010
-#   cartografía geoestadística localidades amanzanadas urbana cierre censo 2010
+# Descargar Cartografía Geoestadística cierre Censo 2010 - Durango
+#
+# Basado en otro script hecho por Diego Valle-Jones https://www.diegovalle.net
+#
+
+# Yo soy
+SOY="[Descargar Cartografía Geoestadística cierre Censo 2010 Durango]"
+
+# Constantes que definen los tipos de errores
+EXITO=0
+E_FATAL=99
 
 # Orden para sólo probar (sin descargar) que existe el archivo en el servidor remoto
-CURL="wget --spider"
+# CURL="wget --spider"
 
 # Orden para descargar
-#CURL="wget --continue"
+CURL="wget"
 
 # URL base en el servidor de INEGI, así como el término de cada archivo
 BASE="http://internet.contenidos.inegi.org.mx/contenidos/Productos/prod_serv/contenidos/espanol/bvinegi/productos/geografia/urbana/SHP_2"
@@ -100,21 +109,45 @@ declare -a municipios_numeros=(
     "702825299743"  # Vicente Guerrero
     "702825299750") # Nuevo Ideal
 
+# Crear directorios
+if [ ! -d Descargas ]; then
+    mkdir Descargas
+fi
+if [ ! -d Desempacados ]; then
+    mkdir Desempacados
+fi
+
 # Descargar
 contador=0
 for municipio_numero in "${municipios_numeros[@]}"
 do
-    if [ ! -d Descargas ]; then
-        mkdir Descargas
-    fi
     if [ ! -z $municipio_numero ]; then
         URL="$BASE/$ESTADO/$municipio_numero$SUFIJO"
         DESTINO="Descargas/${municipios[$contador]}.zip"
         if [ "$CURL" = "wget --spider" ]; then
             $CURL $URL
         else
-            $CURL $URL -o $DESTINO
+            if [ ! -e "$DESTINO" ]; then
+                $CURL $URL -O $DESTINO
+                if [ "$?" -ne $EXITO ]; then
+                    echo "ERROR: Al tratar de descargar $DESTINO"
+                    exit $E_FATAL
+                fi
+            fi
+            if [ -e "$DESTINO" ]; then
+                unzip -o -L $DESTINO -d Desempacados/${municipios[$contador]}
+                if [ "$?" -ne $EXITO ]; then
+                    echo "ERROR: Al parecer está corrupto $DESTINO"
+                    exit $E_FATAL
+                fi
+            else
+                echo "ERROR: No se encuentra $DESTINO"
+                exit $E_FATAL
+            fi
         fi
     fi
     contador=`expr $contador + 1`
 done
+
+echo "$SOY Script terminado."
+exit $EXITO
