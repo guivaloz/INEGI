@@ -4,11 +4,15 @@
 # Descargar Cartografía Geoestadística cierre Censo 2010
 #   cartografía geoestadística localidades amanzanadas urbana cierre censo 2010
 
+# Constantes que definen los tipos de errores
+EXITO=0
+E_FATAL=99
+
 # Orden para sólo probar (sin descargar) que existe el archivo en el servidor remoto
-CURL="wget --spider"
+#CURL="wget --spider"
 
 # Orden para descargar
-#CURL="wget --continue"
+CURL="wget --continue"
 
 # URL base en el servidor de INEGI, así como el término de cada archivo
 BASE="http://internet.contenidos.inegi.org.mx/contenidos/Productos/prod_serv/contenidos/espanol/bvinegi/productos/geografia/urbana/SHP_2"
@@ -101,19 +105,24 @@ declare -a municipios_numeros=(
     "702825299750") # Nuevo Ideal
 
 # Descargar
+if [ ! -d Descargas ]; then
+    mkdir Descargas
+fi
 contador=0
 for municipio_numero in "${municipios_numeros[@]}"
 do
-    if [ ! -d Descargas ]; then
-        mkdir Descargas
-    fi
     if [ ! -z $municipio_numero ]; then
         URL="$BASE/$ESTADO/$municipio_numero$SUFIJO"
         DESTINO="Descargas/${municipios[$contador]}.zip"
         if [ "$CURL" = "wget --spider" ]; then
             $CURL $URL
         else
-            $CURL $URL -o $DESTINO
+            echo "Descargando $DESTINO..."
+            $CURL $URL -O $DESTINO
+            if [ $? -ne $EXITO ]; then
+                exit $E_FATAL
+            fi
+            echo "Desempacando $DESTINO..."
         fi
     fi
     contador=`expr $contador + 1`
