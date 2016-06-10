@@ -11,7 +11,7 @@ import os                # Operaciones misceláneas con el sistema operativo htt
 import sys               # Interactuar con otros programas usando estándar de término en sys.exit(1) https://docs.python.org/3.4/library/sys.html
 from pathlib import Path # Trabajar con rutas de rutas https://docs.python.org/3.4/library/pathlib.html
 
-# Iniciar constantes
+# Definir constantes
 base_datos       = 'inegi'
 tabla_personas   = 'encuesta_intercensal_2015_personas'
 tabla_viviendas  = 'encuesta_intercensal_2015_viviendas'

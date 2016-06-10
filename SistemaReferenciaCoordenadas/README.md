@@ -16,6 +16,8 @@ El archivo **itrf92-inegi-spatial-ref-sys.sql** tiene este contenido...
 
 Recién creada la base de datos en PostgreSQL, debería agregar el **SRC**; puede hacerlo de forma manual con el comando...
 
+    $ psql -c "CREATE EXTENSION postgis;" inegi
+    $ psql -c "CREATE EXTENSION postgis_topology;" inegi
     $ psql -f src-itrf92-inegi.sql inegi
 
 ### Agregar el SRC a QGIS

@@ -13,6 +13,10 @@ SOY="[Descargar Cartografía Geoestadística cierre Censo 2010 Durango]"
 EXITO=0
 E_FATAL=99
 
+# Constantes que definen los tipos de errores
+EXITO=0
+E_FATAL=99
+
 # Orden para sólo probar (sin descargar) que existe el archivo en el servidor remoto
 # CURL="wget --spider"
 
@@ -118,6 +122,9 @@ if [ ! -d Desempacados ]; then
 fi
 
 # Descargar
+if [ ! -d Descargas ]; then
+    mkdir Descargas
+fi
 contador=0
 for municipio_numero in "${municipios_numeros[@]}"
 do
