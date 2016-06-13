@@ -8,6 +8,7 @@ CREATE TABLE mgn_localidades_rurales (
     cve_loc     character varying,
     cve_ageb    character varying,
     nom_loc     character varying,
+    __oid       integer,
     UNIQUE (cve_ent, cve_mun, cve_loc, cve_ageb)
 );
 

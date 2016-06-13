@@ -7,6 +7,7 @@ CREATE TABLE mgn_municipios (
     cve_mun    character varying,
     nom_mun    character varying,
     concat     character varying,
+    __oid      integer,
     UNIQUE (cve_ent, cve_mun)
 );
 
