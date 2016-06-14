@@ -7,7 +7,7 @@ SOY="[INEGI]"
 BD="inegi"
 BD_USUARIO="inegi"
 
-# Abortal al presentarse cualquier error
+# Abortar al presentarse cualquier error
 set -e
 
 #
