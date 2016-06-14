@@ -1,7 +1,7 @@
 
 # INEGI
 
-Apuntes y scripts para trabajar con datos abiertos de INEGI. Programando con [Python](https://www.python.org/), importando a la base de datos [PostgreSQL](https://www.postgresql.org/) y usando **GNU/Linux** como sistema operativo.
+Apuntes y scripts para trabajar con datos abiertos de INEGI. Programando con [Python](https://www.python.org/), importando los datos a la base de datos [PostgreSQL](https://www.postgresql.org/) y usando **GNU/Linux** como sistema operativo.
 
 
 ### Requerimientos
@@ -25,11 +25,6 @@ Cree la base de datos **inegi** otorgándole la propiedad al usuario **inegi**:
     $ createdb -O inegi inegi
 
 
-### Luego alimente el Sistema de Referencia de Coordenadas
+### Cada directorio documenta un contenido de INEGI
 
-INEGI usa el **ITRF92 INEGI**. Vaya al directorio **SistemaReferenciaCoordenadas** y siga los pasos de su propio README.md
-
-
-### Cada directorio abarca un contenido de INEGI
-
-Recomiendo comenzar con el **Marco Geostadístico Nacional** para bajar, alimentar y visualizar la información geográfica de estados, municipios, localidades y AGEBs.
+Lea y siga los pasos de los archivos README.md que hay dentro de cada uno de los directorios.

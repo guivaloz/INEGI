@@ -29,7 +29,9 @@ Dos Bash Scripts apuntan a los archivos ZIP de los estados de Coahuila de Zarago
 * Descargar05CoahuilaDeZaragoza.sh
 * Descargar10Durango.sh
 
-Éstos descargan por el comando curl y desempacan los archivos ZIP. Lamentablemente es irregular el contenido de los archivos desempacados, a veces depositan los archivos, otras subdirectorios e incluso más archivos ZIP. Tendrá que arreglar manualmente cada uno.
+Éstos descargan y desempacan los archivos ZIP.
+
+Lamentablemente el contenido de los archivos desempacados no es con el mismo orden, a veces depositan los archivos, otras subdirectorios e incluso más archivos ZIP. Tendrá que arreglar manualmente cada uno.
 
 
 ### Convertir SHP a SQL

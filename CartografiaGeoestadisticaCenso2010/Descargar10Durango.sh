@@ -122,33 +122,41 @@ if [ ! -d Desempacados ]; then
 fi
 
 # Descargar
-if [ ! -d Descargas ]; then
-    mkdir Descargas
-fi
 contador=0
 for municipio_numero in "${municipios_numeros[@]}"
 do
+    DESCARGA="Descargas/${municipios[$contador]}.zip"
+    DESEMPACADO="Desempacados/${municipios[$contador]}"
     if [ ! -z $municipio_numero ]; then
         URL="$BASE/$ESTADO/$municipio_numero$SUFIJO"
-        DESTINO="Descargas/${municipios[$contador]}.zip"
         if [ "$CURL" = "wget --spider" ]; then
             $CURL $URL
         else
-            if [ ! -e "$DESTINO" ]; then
-                $CURL $URL -O $DESTINO
+            if [ ! -e "$DESCARGA" ]; then
+                $CURL $URL -O $DESCARGA
                 if [ "$?" -ne $EXITO ]; then
-                    echo "ERROR: Al tratar de descargar $DESTINO"
+                    echo "ERROR: Al tratar de descargar $DESCARGA"
                     exit $E_FATAL
                 fi
             fi
-            if [ -e "$DESTINO" ]; then
-                unzip -o -L $DESTINO -d Desempacados/${municipios[$contador]}
-                if [ "$?" -ne $EXITO ]; then
-                    echo "ERROR: Al parecer está corrupto $DESTINO"
-                    exit $E_FATAL
+            if [ -e "$DESCARGA" ]; then
+                if [ ! -d "$DESEMPACADO" ]; then
+                    unzip -q -j -U $DESCARGA -d $DESEMPACADO -x "*.pdf"
+                    if [ "$?" -ne $EXITO ]; then
+                        echo "ERROR: Al parecer está corrupto $DESCARGA"
+                        exit $E_FATAL
+                    fi
+                    echo "Desempacado archivos ZIP..."
+                    find $DESEMPACADO/ -name "*.zip" -exec unzip -q -j -U {} -d $DESEMPACADO/  -x "*.pdf" \;
+                    echo "Eliminando archivos ZIP..."
+                    find $DESEMPACADO/ -name "*.zip" -delete
+                    echo "Eliminando archivos directorios vacíos..."
+                    find $DESEMPACADO/ -type d -exec rmdir {} \;
+                else
+                    echo "AVISO: Ya existe $DESEMPACADO entonces NO se desempaca."
                 fi
             else
-                echo "ERROR: No se encuentra $DESTINO"
+                echo "ERROR: No se encuentra $DESCARGA"
                 exit $E_FATAL
             fi
         fi
