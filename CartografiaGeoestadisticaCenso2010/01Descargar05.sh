@@ -1,13 +1,11 @@
 #!/bin/bash
 
 #
-# Descargar Cartografía Geoestadística cierre Censo 2010 - Coahuila de Zaragoza
-#
-# Basado en otro script hecho por Diego Valle-Jones https://www.diegovalle.net
+# Descargar Cartografía Geoestadística Censo 2010 - 05 Coahuila de Zaragoza
 #
 
 # Yo soy
-SOY="[Descargar Cartografía Geoestadística cierre Censo 2010 - Coahuila de Zaragoza]"
+SOY="[Descargar Cartografía Geoestadística Censo 2010 - 05 Coahuila de Zaragoza]"
 
 # Constantes que definen los tipos de errores
 EXITO=0

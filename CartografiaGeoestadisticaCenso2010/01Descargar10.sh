@@ -1,24 +1,18 @@
 #!/bin/bash
 
 #
-# Descargar Cartografía Geoestadística cierre Censo 2010 - Durango
-#
-# Basado en otro script hecho por Diego Valle-Jones https://www.diegovalle.net
+# Descargar Cartografía Geoestadística Censo 2010 - 10 Durango
 #
 
 # Yo soy
-SOY="[Descargar Cartografía Geoestadística cierre Censo 2010 Durango]"
-
-# Constantes que definen los tipos de errores
-EXITO=0
-E_FATAL=99
+SOY="[Descargar Cartografía Geoestadística Censo 2010 - 10 Durango]"
 
 # Constantes que definen los tipos de errores
 EXITO=0
 E_FATAL=99
 
 # Orden para sólo probar (sin descargar) que existe el archivo en el servidor remoto
-# CURL="wget --spider"
+#CURL="wget --spider"
 
 # Orden para descargar
 CURL="wget"
