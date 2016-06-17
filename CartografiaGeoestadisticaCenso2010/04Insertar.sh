@@ -25,10 +25,8 @@ if [ ! -d Desempacados ]; then
     exit $E_FATAL
 fi
 
-# Cambiarse al directorio Desempacados
-cd Desempacados
-
 # Insertar
+find Desempacados/ -name '*.sql' -exec psql -U $BD_USUARIO -f {} $BD \;
 
 #
 # Pendiente

@@ -4,7 +4,7 @@
 
 CREATE TABLE cgc_agebs (
     geografico    character varying(60),
-    cvegeo        character varying(13),
+    cvegeo        character varying(13)    PRIMARY KEY,
     codigo        integer,
     fechaact      character varying(7),
     instituc      character varying(20),
