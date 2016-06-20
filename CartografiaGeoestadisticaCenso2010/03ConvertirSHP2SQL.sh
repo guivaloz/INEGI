@@ -5,9 +5,9 @@
 #
 # Recibe los nombres de los archivos SHP como parámetros
 # Puede usar el comando find para AGEBs:
-#   $ find Desempacados/ -name '*a.shp' -and -not -name '*sia.shp' -exec ./ConvertirSHP2SQL.sh {} \;
+#   $ find Desempacados/ -name '*a.shp' -and -not -name '*sia.shp' -exec ./ConvertirSHP2SQL.sh cgc_agebs {} \;
 # Y para manzanas:
-#   $ find Desempacados/ -name '*m.shp' -and -not -name '*fm.shp' -exec ./ConvertirSHP2SQL.sh {} \;
+#   $ find Desempacados/ -name '*m.shp' -and -not -name '*fm.shp' -exec ./ConvertirSHP2SQL.sh cgc_manzanas {} \;
 #
 # Notas del comando shp2pgsql
 #
@@ -29,6 +29,10 @@ EXITO=0
 E_NOARGS=65
 E_FATAL=99
 
+# El primer parámetro es la tabla
+TABLA=$1
+shift
+
 # Para cada parámetro
 for ARCHIVO_SHP in "$@"
 do
@@ -42,5 +46,5 @@ do
     fi
     # Convertir archivo SHP a SQL
     echo "$SOY Convirtiendo $ARCHIVO_SHP..."
-    shp2pgsql -s 97999 -a -e -i -W LATIN1 $ARCHIVO_SHP cgc_agebs > $ARCHIVO_SQL
+    shp2pgsql -s 97999 -a -e -i -W LATIN1 $ARCHIVO_SHP $TABLA > $ARCHIVO_SQL
 done

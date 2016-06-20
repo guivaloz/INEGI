@@ -144,8 +144,6 @@ do
                     find $DESEMPACADO/ -name "*.zip" -exec unzip -q -j -U {} -d $DESEMPACADO/  -x "*.pdf" \;
                     echo "Eliminando archivos ZIP..."
                     find $DESEMPACADO/ -name "*.zip" -delete
-                    #echo "Eliminando archivos directorios vacíos..."
-                    #find $DESEMPACADO/ -type d -exec rmdir {} \;
                 else
                     echo "AVISO: Ya existe $DESEMPACADO entonces NO se desempaca."
                 fi

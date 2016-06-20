@@ -28,3 +28,17 @@ Cree la base de datos **inegi** otorgándole la propiedad al usuario **inegi**:
 ### Cada directorio documenta un contenido de INEGI
 
 Lea y siga los pasos de los archivos README.md que hay dentro de cada uno de los directorios.
+
+
+### Muestra de Marco Geostadístico Nacional 2010
+
+Filtrando los estados 05 (Coahuila de Zaragoza) y 10 (Durango) en QGIS:
+
+![QGIS Muestra de Marco Geostadístico Nacional 2010](imagenes/qgis-mgn2010.png)
+
+
+### Muestra de Cartografía Geostadística cierre Censo 2010
+
+Mostrando AGBEs y Manzanas:
+
+![QGIS Muestra de Marco Geostadístico Nacional 2010](imagenes/qgis-cgc2010.png)

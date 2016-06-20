@@ -28,10 +28,6 @@ fi
 # Insertar
 find Desempacados/ -name '*.sql' -exec psql -U $BD_USUARIO -f {} $BD \;
 
-#
-# Pendiente
-#
-
 # Término
 echo "$SOY Script terminado."
 exit $EXITO

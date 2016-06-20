@@ -19,8 +19,12 @@ if [ ! -d Desempacados ]; then
 fi
 
 # Convertir archivos SHP a SQL y cambiar los comandos INSERT
-echo "$SOY Ejecutando ConvertirSHP2SQL.sh"
-find Desempacados/ -name '*a.shp' -and -not -name '*sia.shp' -exec ./03ConvertirSHP2SQL.sh {} \;
+echo "$SOY Convirtiendo AGEBs..."
+find Desempacados/ -name '*a.shp' -and -not -name '*sia.shp' -exec ./03ConvertirSHP2SQL.sh cgc_agebs {} \;
+
+# Convertir archivos SHP a SQL y cambiar los comandos INSERT
+echo "$SOY Convirtiendo Manzanas..."
+find Desempacados/ -name '*m.shp' -and -not -name '*fm.shp' -exec ./03ConvertirSHP2SQL.sh cgc_manzanas {} \;
 
 # Término
 echo "$SOY Script terminado."
