@@ -24,10 +24,10 @@ Active también el filtro del estado que le interese. Por ejemplo, para Coahuila
 
 ### Descarga masiva
 
-Dos Bash Scripts apuntan a los archivos ZIP de los estados de Coahuila de Zaragoza y Durango.
+Dos Bash Scripts apuntan a los archivos ZIP de los estados de Coahuila de Zaragoza (01Descargar05.sh) y Durango (01Descargar10.sh).
 
-* Descargar05CoahuilaDeZaragoza.sh
-* Descargar10Durango.sh
+* 01Descargar05.sh
+* 01Descargar10.sh
 
 Éstos descargan y desempacan los archivos ZIP.
 
