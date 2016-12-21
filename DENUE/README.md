@@ -9,7 +9,9 @@ De clic clic en la opción Descargar.
 
 Elija el estado. Descargue los CSV y SHP más recientes, por ejemplo de Coahuila de Zaragoza(05).
 
-Para descargar de forma manual
+### Para descargar de forma manual
+
+Ejecute:
 
     $ cd ~/Documentos/GitHub/guivaloz/INEGI/DENUE/Descargas/
     $ wget http://www.beta.inegi.org.mx/contenidos/masiva/denue/denue_05_csv.zip
@@ -22,9 +24,18 @@ Estos son los de enero de 2016:
     http://www.beta.inegi.org.mx/contenidos/masiva/denue/denue_05_0116_csv.zip
     http://www.beta.inegi.org.mx/contenidos/masiva/denue/denue_05_0116_shp.zip
 
-Descomprima.
+Descomprima:
 
+    $ unzip -d ../Desempacados/ denue_05_csv.zip
     $ unzip -d ../Desempacados/ denue_05_shp.zip
+
+### Insertar registros a la base de datos
+
+Ejecute el script Python:
+
+    $ python3 InsertarCSV.py
+
+### Conversión de SHP a SQL
 
 El comando **shp2pgsql** es para crear archivos SQL con comandos INSERT que agregarán registros a la base de datos.
 
