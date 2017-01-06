@@ -34,13 +34,13 @@ bd_usuario = "inegi"
 # Definir conector a la BD
 conexion = None
 
-# Ruta al archivo CSV exportado por la hoja de cálculo con las claves de las manzanas y sus colonias
+# Ruta al archivo SQL que crea la tabla
 tabla_sql_ruta = "den_denue.sql"
 
-# Ruta al archivo CSV exportado por la hoja de cálculo con las claves de las manzanas y sus colonias
+# Ruta al archivo CSV con todos los registros de Coahuila de Zaragoza(05)
 denue_ruta = "Desempacados/denue_05_csv/conjunto_de_datos/denue_inegi_05_.csv"
 
-# Sólo insertar registros con esta clave
+# Sólo insertar registros con la clave del Municipio de Torreón(05035)
 municipio_clave_filtro = "05035"
 
 # Iniciar contador

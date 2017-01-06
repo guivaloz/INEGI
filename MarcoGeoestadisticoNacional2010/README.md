@@ -1,5 +1,5 @@
 
-# Marco Geoestadístico Nacional 2010
+# INEGI / Marco Geoestadístico Nacional 2010
 
 En el siguiente URL...
 

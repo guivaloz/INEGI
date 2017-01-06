@@ -14,7 +14,7 @@ Apuntes y scripts para trabajar con datos abiertos de INEGI. Programando con [Py
 * QGIS.
 
 
-### Para iniciar la base de datos
+### 1) inicie la base de datos
 
 Si no lo ha hecho, cree el usuario **inegi** en PostgreSQL sin privilegio de crear nuevas bases de datos y sin ser superusuario.
 
@@ -25,19 +25,27 @@ Cree la base de datos **inegi** otorgándole la propiedad al usuario **inegi**:
     $ createdb -O inegi inegi
 
 
-### Cada directorio documenta un contenido de INEGI
+### 2) Ejecute CrearBaseDatos.sh
 
-Lea y siga los pasos de los archivos README.md que hay dentro de cada uno de los directorios.
+Este script ejecutará en el orden debido cada script que descarga, desempaca e inserta los registros a la B.D.:
+
+1. SistemaReferenciaCoordenadas/04Insertar.sh
+2. MarcoGeoestadisticoNacional2010/01Descargar.sh
+3. MarcoGeoestadisticoNacional2010/02CrearTablas.sh
+4. MarcoGeoestadisticoNacional2010/03Convertir.sh
+5. MarcoGeoestadisticoNacional2010/04Insertar.sh
+
+No deje de leer los archivos README.md que hay dentro de cada uno de los directorios.
 
 
-### Muestra de Marco Geostadístico Nacional 2010
+### Ejemplo del Marco Geostadístico Nacional 2010
 
 Filtrando los estados 05 (Coahuila de Zaragoza) y 10 (Durango) en QGIS:
 
 ![QGIS Muestra de Marco Geostadístico Nacional 2010](imagenes/qgis-mgn2010.png)
 
 
-### Muestra de Cartografía Geostadística cierre Censo 2010
+### Ejemplo de la Cartografía Geostadística cierre Censo 2010
 
 Mostrando AGBEs y Manzanas:
 
