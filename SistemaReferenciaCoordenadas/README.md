@@ -23,4 +23,12 @@ Recién creada la base de datos en PostgreSQL, debería agregar el **SRC**; pued
 
 ### Agregar el SRC a QGIS
 
+Agrege una nueva definición con nombre:
+
+    ITRF92 INEGI
+
+Y con este proj4:
+
+    +proj=lcc +lat_1=17.5 +lat_2=29.5 +lat_0=12 +lon_0=-102 +x_0=2500000 +y_0=0 +ellps=GRS80 +units=m +no_defs
+
 ![QGIS SRC ITRF92 INEGI](imagenes/qgis-src-itrf92-inegi.png)
