@@ -27,7 +27,9 @@ Cree la base de datos **inegi** otorgándole la propiedad al usuario **inegi**:
 
 ### 2) Ejecute CrearBaseDatos.sh
 
-Este script ejecutará en el orden debido cada script que descarga, desempaca e inserta los registros a la B.D.:
+Es recomendable iniciar la B.D. con el **Sistema de Referencia de Coordenadas** de INEGI más el **Marco Geoestadístico Nacional 2010**.
+
+**CrearBaseDatos.sh** ejecutará en el orden debido cada script que descarga, desempaca e inserta los registros a la B.D.:
 
 1. SistemaReferenciaCoordenadas/04Insertar.sh
 2. MarcoGeoestadisticoNacional2010/01Descargar.sh
@@ -35,18 +37,34 @@ Este script ejecutará en el orden debido cada script que descarga, desempaca e 
 4. MarcoGeoestadisticoNacional2010/03Convertir.sh
 5. MarcoGeoestadisticoNacional2010/04Insertar.sh
 
-No deje de leer los archivos README.md que hay dentro de cada uno de los directorios.
-
-
-### Ejemplo del Marco Geostadístico Nacional 2010
-
-Filtrando los estados 05 (Coahuila de Zaragoza) y 10 (Durango) en QGIS:
+Así tendrá listas las **entidades, municipios y localidades urbanas.** Por ejemplo, filtrando los estados 05 (Coahuila de Zaragoza) y 10 (Durango) en QGIS:
 
 ![QGIS Muestra de Marco Geostadístico Nacional 2010](imagenes/qgis-mgn2010.png)
 
+No deje de leer los archivos **README.md** que hay dentro de cada uno de los directorios.
 
-### Ejemplo de la Cartografía Geostadística cierre Censo 2010
 
-Mostrando AGBEs y Manzanas:
+### 3) Alimente más datos georreferenciados de sus estados.
+
+Continúe con **Cartografía Geoestadística cierre Censo 2010** que proporciona AGEBs y manzanas.
+
+Para **Coahuila de Zaragoza** y **Durango** siga esta secuencia...
+
+1. 01Descargar05.sh
+2. 01Descargar10.sh
+3. 02CrearTablas.sh
+4. 03Convertir.sh
+5. 04Insertar.sh
+
+Copie y modifique los _bash scripts_ para descargar sus entidades.
+
+Por ejemplo, mostrando AGBEs y Manzanas en QGIS:
 
 ![QGIS Muestra de Marco Geostadístico Nacional 2010](imagenes/qgis-cgc2010.png)
+
+
+### 4) Datos de DENUE
+
+Está en construcción un script en Python llamado **InsertarCSV.py** para insertar los datos de DENUE a partir de la descarga de archivos CSV.
+
+Lea el README.md en el directorio DENUE.
