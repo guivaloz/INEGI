@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #
-# Descargar Cartografía Geoestadística Censo 2010 - 10 Durango
+# Descargar - 10 Durango
 #
 
 # Yo soy
-SOY="[Descargar Cartografía Geoestadística Censo 2010 - 10 Durango]"
+SOY="[Descargar - 10 Durango]"
 
 # Constantes que definen los tipos de errores
 EXITO=0

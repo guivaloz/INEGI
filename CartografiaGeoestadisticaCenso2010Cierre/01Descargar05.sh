@@ -18,7 +18,8 @@ E_FATAL=99
 CURL="wget"
 
 # URL base en el servidor de INEGI, así como el término de cada archivo
-BASE="http://internet.contenidos.inegi.org.mx/contenidos/Productos/prod_serv/contenidos/espanol/bvinegi/productos/geografia/urbana/SHP_2"
+BASE="http://internet.contenidos.inegi.org.mx/contenidos/Productos/prod_serv/contenidos/espanol/bvinegi/productos/geografia/urbana/SHP"
+INTERMEDIO="SHP"
 SUFIJO="_s.zip"
 
 #
@@ -66,45 +67,47 @@ declare -a municipios=(
     "05037"  # Villa Unión
     "05038") # Zaragoza
 
+#     http://internet.contenidos.inegi.org.mx/contenidos/Productos/prod_serv/contenidos/espanol/bvinegi/productos/geografia/urbana/SHP/Coahuila_de_Zaragoza/SHP/702825582968_s.zip
+#    702825582968_s.zip
 declare -a municipios_numeros=(
-    "702825297022"  # Abasolo
-    "702825297039"  # Acuña
-    "702825297046"  # Allende
-    "702825297053"  # Arteaga
-    "702825297060"  # Candela
-    "702825297077"  # Castaños
-    "702825297084"  # Cuatro Ciénegas
-    "702825297091"  # Escobedo
-    "702825297107"  # Francisco I. Madero
-    "702825297114"  # Frontera
-    "702825297121"  # General Cepeda
-    "702825297138"  # Guerrero
-    "702825312480"  # Hidalgo
-    "702825297145"  # Jiménez
-    "702825297152"  # Juárez
-    "702825312923"  # Lamadrid
-    "702825297169"  # Matamoros
-    "702825297176"  # Monclova
-    "702825297183"  # Morelos
-    "702825297190"  # Múzquiz
-    "702825297206"  # Nadadores
-    "702825297213"  # Nava
-    "702825297220"  # Ocampo
-    "702825297237"  # Parras
-    "702825297244"  # Piedras Negras
-    "702825297251"  # Progreso
-    "702825297268"  # Ramos Arizpe
-    "702825297275"  # Sabinas
-    "702825313449"  # Sacramento
-    "702825297282"  # Saltillo
-    "702825297299"  # San Buenaventura
-    "702825297305"  # San Juan de Sabinas
-    "702825297312"  # San Pedro
-    "702825297329"  # Sierra Mojada
-    "702825297336"  # Torreón
-    "702825297343"  # Viesca
-    "702825297350"  # Villa Unión
-    "702825297367") # Zaragoza
+    "702825582968"  # Abasolo
+    "702825582975"  # Acuña
+    "702825582982"  # Allende
+    "702825582999"  # Arteaga
+    "702825583002"  # Candela
+    "702825583019"  # Castaños
+    "702825583026"  # Cuatro Ciénegas
+    "702825583033"  # Escobedo
+    "702825583040"  # Francisco I. Madero
+    "702825583057"  # Frontera
+    "702825583064"  # General Cepeda
+    "702825583071"  # Guerrero
+    "702825583088"  # Hidalgo
+    "702825583095"  # Jiménez
+    "702825583101"  # Juárez
+    "702825583118"  # Lamadrid
+    "702825583125"  # Matamoros
+    "702825583132"  # Monclova
+    "702825583149"  # Morelos
+    "702825583156"  # Múzquiz
+    "702825583163"  # Nadadores
+    "702825583170"  # Nava
+    "702825583187"  # Ocampo
+    "702825583194"  # Parras
+    "702825583200"  # Piedras Negras
+    "702825583217"  # Progreso
+    "702825583224"  # Ramos Arizpe
+    "702825583231"  # Sabinas
+    "702825583248"  # Sacramento
+    "702825583255"  # Saltillo
+    "702825583262"  # San Buenaventura
+    "702825583279"  # San Juan de Sabinas
+    "702825583286"  # San Pedro
+    "702825583293"  # Sierra Mojada
+    "702825583309"  # Torreón
+    "702825583316"  # Viesca
+    "702825583323"  # Villa Unión
+    "702825583330") # Zaragoza
 
 # Crear directorios
 if [ ! -d Descargas ]; then
@@ -121,7 +124,7 @@ do
     DESCARGA="Descargas/${municipios[$contador]}.zip"
     DESEMPACADO="Desempacados/${municipios[$contador]}"
     if [ ! -z $municipio_numero ]; then
-        URL="$BASE/$ESTADO/$municipio_numero$SUFIJO"
+        URL="$BASE/$ESTADO/$INTERMEDIO/$municipio_numero$SUFIJO"
         if [ "$CURL" = "wget --spider" ]; then
             $CURL $URL
         else
