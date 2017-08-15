@@ -1,5 +1,5 @@
 --
--- den_denue.sql
+-- INEGI DENUE
 --
 
 CREATE TABLE den_denue (

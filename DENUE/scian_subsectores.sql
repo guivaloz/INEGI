@@ -1,0 +1,3 @@
+--
+-- INEGI SCIAN Subsectores
+--
