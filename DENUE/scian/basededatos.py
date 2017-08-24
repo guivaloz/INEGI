@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*-
+#-*- coding:utf-8 -*-
 
 import psycopg2
 
@@ -18,6 +18,6 @@ class inegi(object):
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        """ Entregar los comandos y cerrar """
+        """ Ejecutar los comandos y cerrar """
         self.conexion.commit()
         self.conexion.close()

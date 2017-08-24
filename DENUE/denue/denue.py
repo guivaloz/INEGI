@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 #-*- coding:utf-8 -*-
 
 import csv
@@ -16,7 +15,9 @@ def crear_tabla():
     with basededatos.inegi() as bd:
         bd.cursor.execute("""
             CREATE TABLE den_denue (
-                id                serial             PRIMARY KEY,
+                id                serial                PRIMARY KEY,
+                subrama           integer               REFERENCES scian_subramas NOT NULL,
+                corte             character varying(7)  NOT NULL,
                 nombre            character varying,
                 razon_social      character varying,
                 codigo            character varying,
@@ -36,7 +37,7 @@ def crear_tabla():
         bd.cursor.execute("SELECT AddGeometryColumn('', 'den_denue', 'coordenadas', '4326', 'POINT', 2)")
     print("  Creada la tabla den_denue.")
 
-def insertar(archivo, fecha, municipios):
+def insertar(archivo, corte, municipios):
     """ Verificar si existe el archivo CSV """
     if not os.path.isfile(archivo):
         raise Exception("No existe el archivo {}".format(archivo))
@@ -64,29 +65,35 @@ def insertar(archivo, fecha, municipios):
                 manzana          = ageb + renglon['manzana'].strip()
                 latitud          = renglon['latitud']
                 longitud         = renglon['longitud']
+                # Algunos números tienen cero, se cambian por textos vacíos
                 if numero_ext == '0':
                     numero_ext = ''
                 if numero_int == '0':
                     numero_int = ''
+                # Para relacionar con la subrama se hará una subconsulta con los primeros cinco caracteres del código
+                subrama_codigo   = codigo[:5]
+                # Filtro por municipios
                 if municipio in municipios:
                     if latitud != '' and longitud != '':
                         coordenadas = "POINT(%s %s)" % (longitud, latitud,)
                         bd.cursor.execute("""
                             INSERT INTO den_denue
-                                (nombre, razon_social, codigo, personal_ocupado,
+                                (subrama, corte,
+                                 nombre, razon_social, codigo, personal_ocupado,
                                  calle, numero_ext, letra_ext, numero_int, letra_int, cp,
                                  entidad, municipio, localidad, ageb, manzana,
                                  coordenadas)
                             VALUES
-                                (%s, %s, %s, %s,
+                                ((SELECT id FROM scian_subramas WHERE codigo = %s), %s,
+                                 %s, %s, %s, %s,
                                  %s, %s, %s, %s, %s, %s,
                                  %s, %s, %s, %s, %s,
                                  ST_GeomFromText(%s, 4326))
-                            """, (nombre, razon_social, codigo, personal_ocupado, calle, numero_ext, letra_ext, numero_int, letra_int, cp, entidad, municipio, localidad, ageb, manzana, coordenadas,))
+                            """, (subrama_codigo, corte, nombre, razon_social, codigo, personal_ocupado, calle, numero_ext, letra_ext, numero_int, letra_int, cp, entidad, municipio, localidad, ageb, manzana, coordenadas,))
                         contador = contador + 1
                     else:
                         contador_sin = contador_sin + 1
-    print("  Para la fecha {} y los municipios {} se insertaron {} unidades.".format(fecha, ", ".join(sorted(municipios)), contador))
+    print("  Para la corte {} y los municipios {} se insertaron {} unidades.".format(corte, ", ".join(sorted(municipios)), contador))
     if contador_sin > 0:
         print("    Se omitieron {} por coordenadas incompletas.".format(contador_sin))
 

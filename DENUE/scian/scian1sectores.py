@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*-
+#-*- coding:utf-8 -*-
 
 import csv
 import os.path
