@@ -34,16 +34,16 @@ Descomprima:
     $ unzip -d ../Desempacados/ denue_05_shp.zip
 
 
-### Insertar registros a la base de datos
+### Opción 1: Insertar registros a la base de datos
 
-Este script Python va a crear la tabla den_denue e insertará los registros del Municipio de Torreón, Coahuila de Zaragoza(05035):
+Este script Python va a crear la tabla **den_denue** e insertará los registros del **Municipio de Torreón, Coahuila de Zaragoza** (05035):
 
     $ python3 InsertarCSV.py
 
 Como tiene una columna de latitud y otra de longitud, se hace la coordenada geográfica con PostGIS.
 
 
-### Conversión de SHP a SQL
+### Opción 2: Conversión de SHP a SQL
 
 El comando **shp2pgsql** es para crear archivos SQL con comandos INSERT que agregarán registros a la base de datos.
 
@@ -54,4 +54,4 @@ Con WGS84 = SRID(4326) porque es latitud y longitud tradicional.
     $ shp2pgsql -s 4326 -a -e -i -W UTF-8 denue_inegi_05_.shp > denue_inegi_05_.sql
     $ less denue_inegi_05_.sql
 
-**Nota:** Lamentablemente hay errores en los carecteres. Se supone que deben ser UTF-8 pero fallan los acentos. Por eso, trabajé mejor con el archivo CSV.
+**Nota:** Lamentablemente hay errores en los caracteres. Se supone que deben ser UTF-8 pero fallan los acentos. Por eso, trabajé mejor con el archivo CSV.
