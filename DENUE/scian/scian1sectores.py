@@ -44,22 +44,20 @@ def insertar(archivo):
                 contador = contador + 1
     print("  Se insertaron {} sectores.".format(contador))
 
-def consultar_codigo(codigo):
-    """ Consultar un código y entregar su id """
+def obtener_relacion_codigos():
+    """ Como hay rangos de códigos nn-mm se elabora un diccionario código => sector_id """
     with basededatos.inegi() as bd:
         bd.cursor.execute("SELECT id, codigo FROM scian_sectores")
         if bd.cursor.rowcount == 0:
             raise Exception("No se encontraron registros en scian_sectores.")
-        arreglo = dict()
+        diccionario = dict()
         for r in bd.cursor.fetchall():
-            i, c = r[0], r[1]
+            i = int(r[0])
+            c = r[1].strip()
             if '-' in c:
                 a = c.split('-')
                 for j in range(int(a[0]), int(a[1])+1):
-                    arreglo[str(j)] = i
+                    diccionario[str(j)] = i
             else:
-                arreglo[c] = i
-        if codigo in arreglo:
-            return arreglo[codigo]
-        else:
-            raise Exception("No se encuentra el código {} en sectores.".format(codigo))
+                diccionario[c] = i
+    return diccionario

@@ -1,4 +1,5 @@
 .directory
+__pycache__
 *.csv
 *.CSV
 *.desktop

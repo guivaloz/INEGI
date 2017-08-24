@@ -51,6 +51,6 @@ def consultar_codigo(codigo):
     with basededatos.inegi() as bd:
         bd.cursor.execute("SELECT id FROM scian_ramas WHERE codigo = %s", (codigo,))
         if bd.cursor.rowcount == 0:
-            return 1 # No se encontró, debería buscar un rango 'nn-mm'
+            raise Exception("No se encuentra el código {} en ramas.".format(codigo))
         consulta = bd.cursor.fetchone()
         return int(consulta[0])

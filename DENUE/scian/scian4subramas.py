@@ -42,6 +42,6 @@ def insertar(archivo):
                         (rama, codigo, titulo, descripcion)
                     VALUES
                         (%s, %s, %s, %s)
-                    """, (scian3ramas.consultar_codigo[:4], codigo, titulo, descripcion,))
+                    """, (scian3ramas.consultar_codigo(codigo[:4]), codigo, titulo, descripcion,))
                 contador = contador + 1
     print("  Se insertaron {} subramas.".format(contador))
