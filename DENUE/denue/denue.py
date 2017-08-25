@@ -11,7 +11,7 @@ def eliminar_tabla():
     print("  Eliminada la tabla den_denue si existía.")
 
 def crear_tabla():
-    """ Crear tabla """
+    """ Crear tabla; la columna conglomerado servirá para mis estudios de desagregación """
     with basededatos.inegi() as bd:
         bd.cursor.execute("""
             CREATE TABLE den_denue (
@@ -32,7 +32,8 @@ def crear_tabla():
                 municipio         character(5),
                 localidad         character(9),
                 ageb              character(13),
-                manzana           character(16)
+                manzana           character(16),
+                conglomerado      character varying
             )""")
         bd.cursor.execute("SELECT AddGeometryColumn('', 'den_denue', 'coordenadas', '4326', 'POINT', 2)")
     print("  Creada la tabla den_denue.")

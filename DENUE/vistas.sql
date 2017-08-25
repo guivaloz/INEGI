@@ -2,6 +2,33 @@
 -- vistas.sql
 --
 
+-- Conglomerado 'Centro Histórico'
+
+DROP VIEW IF EXISTS den_denue_centro_historico;
+
+CREATE VIEW den_denue_centro_historico AS
+    SELECT
+        d.id,
+        s.titulo AS sector, ss.titulo AS subsector,
+        r.titulo AS rama,   sr.titulo AS subrama,
+        d.nombre, d.razon_social,
+        d.calle, d.numero_ext, d.cp,
+        d.coordenadas
+    FROM
+        den_denue         d,
+        scian_subramas    sr,
+        scian_ramas       r,
+        scian_subsectores ss,
+        scian_sectores    s
+    WHERE
+        conglomerado    = 'Centro Histórico'
+        AND d.subrama   = sr.id
+        AND sr.rama     = r.id
+        AND r.subsector = ss.id
+        AND ss.sector   = s.id;
+
+GRANT SELECT ON den_denue_centro_historico TO inegi;
+
 -- 46 Comercio al por menor
 
 DROP VIEW IF EXISTS den_denue_comercio_al_por_menor;
@@ -20,11 +47,11 @@ CREATE VIEW den_denue_comercio_al_por_menor AS
         scian_subsectores ss,
         scian_sectores    s
     WHERE
-        d.subrama       = sr.id
+        s.codigo        = '46'
+        AND d.subrama   = sr.id
         AND sr.rama     = r.id
         AND r.subsector = ss.id
-        AND ss.sector   = s.id
-        AND s.codigo    = '46';
+        AND ss.sector   = s.id;
 
 GRANT SELECT ON den_denue_comercio_al_por_menor TO inegi;
 
@@ -45,10 +72,10 @@ CREATE VIEW den_denue_servicios_medicos AS
         scian_ramas       r,
         scian_subsectores ss
     WHERE
-        d.subrama       = sr.id
+        ss.codigo       = '621'
+        AND d.subrama   = sr.id
         AND sr.rama     = r.id
-        AND r.subsector = ss.id
-        AND ss.codigo   = '621';
+        AND r.subsector = ss.id;
 
 GRANT SELECT ON den_denue_servicios_medicos TO inegi;
 
@@ -69,9 +96,9 @@ CREATE VIEW den_denue_servicios_preparacion_alimentos_bebidas AS
         scian_ramas       r,
         scian_subsectores ss
     WHERE
-        d.subrama       = sr.id
+        ss.codigo       = '722'
+        AND d.subrama   = sr.id
         AND sr.rama     = r.id
-        AND r.subsector = ss.id
-        AND ss.codigo   = '722';
+        AND r.subsector = ss.id;
 
 GRANT SELECT ON den_denue_servicios_preparacion_alimentos_bebidas TO inegi;
