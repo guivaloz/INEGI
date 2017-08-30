@@ -29,7 +29,10 @@ def main(args):
         # Crear tabla
         denue.crear_tabla()
         # Insertar registros desde el archivo CSV, con corte YYYY-MM y filtrar por claves de municipios
-        denue.insertar('Desempacados/denue_05_2017-03.csv', '2017-03', ['05035']) # 05035 Torreón, Coahuila de Zaragoza
+        denue.insertar('Desempacados/denue_05_2017-03.csv', '2017-03', ['05017']) # Matamoros, Coahuila de Zaragoza
+        denue.insertar('Desempacados/denue_05_2017-03.csv', '2017-03', ['05035']) # Torreón, Coahuila de Zaragoza
+        denue.insertar('Desempacados/denue_10_2017-03.csv', '2017-03', ['10007']) # Gómez Palacio, Durango
+        denue.insertar('Desempacados/denue_10_2017-03.csv', '2017-03', ['10012']) # Lerdo, Durango
     except Exception as e:
         print("ERROR: %s" % e)
 
