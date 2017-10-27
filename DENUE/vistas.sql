@@ -15,8 +15,9 @@ CREATE VIEW den_denue_centro_historico AS
         d.id,
         s.titulo AS sector, ss.titulo AS subsector,
         r.titulo AS rama,   sr.titulo AS subrama,
-        d.nombre, d.razon_social,
-        d.calle, d.numero_ext, d.cp,
+        d.nombre, d.razon_social, d.codigo, d.personal_ocupado,
+        d.calle, d.numero_ext, d.letra_ext, d.numero_int, d.letra_int, d.cp,
+        d.manzana,
         d.coordenadas
     FROM
         den_denue         d,
